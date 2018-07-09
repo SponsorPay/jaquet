@@ -68,6 +68,7 @@ class KafkaToS3Stream(topicName: String,
       deleteDestPathsOnS3(dfWithPartitionId, partitionByDimension)
       writeDF(dfWithPartitionId, partitionByDimension)
 
+      // free cache 
       dfWithPartitionId.unpersist()
 
       commitOffsetsToKafka(offsetRanges)
@@ -84,6 +85,8 @@ class KafkaToS3Stream(topicName: String,
     DataType.fromJson(schemaJsonString).asInstanceOf[StructType]
   }
 
+ 
+ // by default spark will read offsets from kafka (__consumer_offsets) , for kafka above 0.10.1.0
   private def generateStream(streamingContext: StreamingContext) = {
     KafkaUtils.createDirectStream[String, String](
       streamingContext,
