@@ -1,0 +1,13 @@
+{
+  "type": "struct",
+  "fields": [
+    {
+      "name": "myParam",
+      "type": "long",
+      "nullable": true,
+      "metadata": {
+
+      }
+    }
+  ]
+}

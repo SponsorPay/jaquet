@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <jmxConfigurator />
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%thread] %d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [session-id: %X{sessionId}] [%logger{60}:%line] %X{akkaSource} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/tmp/Jaquet.log</file>
+        <prudent>false</prudent>
+        <encoder>
+            <pattern>[%thread] %d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [session-id: %X{sessionId}] [%logger{60}:%line] %X{akkaSource} - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/tmp/Jaquet.%d{yyyy.MM.dd.HH}.%i.log</fileNamePattern>
+            <maxHistory>50</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>250MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+
+    <logger name="org.apache.hadoop">
+        <level value="WARN"/>
+    </logger>
+    <logger name="io.netty">
+        <level value="WARN"/>
+    </logger>
+    <logger name="org.spark_project">
+        <level value="WARN"/>
+    </logger>
+    <logger name="org.apache.spark">
+        <level value="WARN"/>
+    </logger>
+    <logger name="org.apache.kafka">
+        <level value="WARN"/>
+    </logger>
+
+
+    <root level="INFO">
+        <appender-ref ref="stdout"/>
+    </root>
+
+</configuration>
