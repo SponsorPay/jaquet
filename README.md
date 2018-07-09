@@ -1,2 +1,2 @@
 # Jaquet
-Spark stream from kafka(json) to s3(parquet)
+Spark streaming from kafka(json) to s3(parquet) - Excatly once end2end
